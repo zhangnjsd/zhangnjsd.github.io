@@ -2,15 +2,10 @@ import type { ReactNode } from "react";
 import { Controls } from "./Controls";
 import "./index.css";
 
-/**
- * 个人主页骨架 —— 内容全是占位/随手写的，直接改成你自己的就行。
- * 排版故意松散、有点歪，方便以后随手往里塞东西。
- */
-
 type Project = {
   name: string;
   desc: string;
-  state: "活着" | "勉强维护" | "画饼中" | "荒废";
+  state: "活着" | "勉强维护" | "画饼中" | "荒废" | "维护中";
   meta: string;
   href?: string;
 };
@@ -24,123 +19,95 @@ const projects: Project[] = [
     href: "https://github.com/zhangnjsd/zhangnjsd.github.io",
   },
   {
-    name: "一个还没想好名字的笔记工具",
-    desc: "目标是「记东西不要超过三秒」。现在三秒能打开，但打不开的第三秒用来想名字了。",
-    state: "画饼中",
-    meta: "本地优先 · 无云",
+    name: "MyGo Music Rev",
+    desc: "Egoist 留下的 MyGo Cloudmusic, 我想继续用，好壳子。",
+    state: "维护中",
+    meta: "Go",
+    href: "https://github.com/zhangnjsd/mygo-music/releases",
   },
   {
-    name: "某爬虫",
-    desc: "当初为了不手动翻 200 页写的。现在每周修一次反爬，收益已经低于维护成本，但舍不得删。",
-    state: "勉强维护",
-    meta: "Python · 正则地狱",
-  },
-  {
-    name: "dotfiles",
-    desc: "第 11 次重写。前 10 次的备份还躺在 ~/.backup 里，我一次都没回去看过。",
-    state: "荒废",
-    meta: "fish · nvim",
-  },
-  {
-    name: "一些小脚本合集",
-    desc: "批量改名、批量压图、批量把 JSON 转成表格。全是 20 行以内的东西，攒了一堆。",
+    name: "極東魔術昼寝結社",
+    desc: "我的主页，它用 WordPress ，现在依旧很脆弱。",
     state: "活着",
-    meta: "Bun · 一次性的",
+    meta: "PHP · WordPress",
+    href: "https://plana.pw",
   },
   {
-    name: "想写的那个游戏",
-    desc: "设计文档写了 40 页，代码 0 行。每年年底拿出来看一次，然后放回去。",
+    name: "Skyscraper Solver",
+    desc: "一次 CTF 里写的解题工具，毫无意义。",
+    state: "荒废",
+    meta: "Rust",
+    href: "https://github.com/zhangnjsd/skyscraper-solver",
+  },
+  {
+    name: "Markdown Coworker",
+    desc: "写的服务端实验性的 Markdown 协作工具。",
+    state: "活着",
+    meta: "Rust",
+    href: "https://github.com/zhangnjsd/md-coworker",
+  },
+  {
+    name: "Xclip",
+    desc: "刚换到 Linux，想写个像 Windows 上的 My Phone 一样的工具。",
     state: "画饼中",
     meta: "只存在于文档",
   },
 ];
 
 const timeline = [
-  { date: "2026-11-26", what: "把站点从「本地构建 + 手动推」换成 GitHub Actions 部署，顺手删掉了模板里的 API 演示。" },
-  { date: "2026-11-20", what: "花两小时调一个 CSS 对齐问题，最后发现是父元素少写了一个 flex。" },
-  { date: "2026-10-14", what: "第一次认真读了一遍 Bun 的 bundler 文档，发现之前很多绕路都是没必要的。" },
-  { date: "2026-09-08", what: "把 Node 项目迁到 Bun。装的依赖少了三分之一，启动快了，但踩了两个兼容坑。" },
-  { date: "2026-07-30", what: "重装系统，花了整个周末恢复环境，然后意识到应该早点写 dotfiles。" },
-  { date: "2026-05-02", what: "建了这个仓库，最初只想放一个「正在建设中」的页面。" },
+  { date: "2026-11-26", what: "改了 AI 写的文字，懒得写这些玩意" },
+  { date: "2026-11-26", what: "刚刚起来" },
 ];
 
 const notes = [
   {
     date: "2026-11-26",
-    title: "把站点搬到 GitHub Actions",
-    body: "省掉了本地构建再推静态分支那一步。真正的好处不是省事，是「写完了推上去就行」这件事让人更愿意写。",
-  },
-  {
-    date: "2026-11-03",
-    title: "关于「先把东西跑起来」",
-    body: "重构三次里最有用的一次，是十分钟随便糊的那个原型。它难看，但它证明路是通的。",
-  },
-  {
-    date: "2026-10-09",
-    title: "配置文件的诅咒",
-    body: "任何超过 30 行的配置，半年后你都不会记得为什么这么写。所以能少写就少写，能默认就默认。",
-  },
-  {
-    date: "2026-08-31",
-    title: "无题",
-    body: "换了个字体，觉得整个项目都变好了。其实什么都没变，只是心理作用。但它确实让我多看了两眼。",
-  },
-  {
-    date: "2026-07-02",
-    title: "整理书签",
-    body: "删到只剩 40 条，一周后涨回 300 条。这是自然规律，跟意志力无关。",
-  },
-  {
-    date: "2026-06-15",
-    title: "读代码比写代码累",
-    body: "尤其是三个月前自己写的。每次都要先重新建立世界观，才能改一行。",
+    title: "试试 GitHub Actions",
+    body: "我觉得这个玩意很好啊，但是⏰网络是依托呢。",
   },
 ];
 
 const reading = [
-  { title: "某本讲分布式系统的书", progress: 62, note: "第三次从头开始读" },
-  { title: "某本小说", progress: 90, note: "剩下 10% 拖了两个月" },
-  { title: "某本设计相关的书", progress: 18, note: "每次都停在第一章" },
-  { title: "一份开源项目的源码", progress: 35, note: "当书读，读到一半发现分支变了" },
+  { title: "终将成为你", progress: 52, note: "上次在飞机上没看完的番" },
+  { title: "cuda-oxide", progress: 2, note: "我很敬仰写 Kernel 的人" },
+  { title: "CTF Wiki", progress: 18, note: "怎么就是看不懂呢？" }
 ];
 
 const todo = [
-  { text: "把这里的每段占位文字换成真要写的内容", done: false },
-  { text: "换个 favicon，现在还是 Bun 的图标", done: false },
-  { text: "给随笔加详情页（或者干脆砍掉这块）", done: false },
-  { text: "接 RSS", done: false },
-  { text: "补一个 404 页面", done: false },
-  { text: "把 actions 升到 Node 24 版本", done: false },
-  { text: "加暗色/亮色切换（其实现在只有暗色）", done: false },
-  { text: "删掉模板里的 API 演示", done: true },
-  { text: "配置 GitHub Actions 部署", done: true },
-  { text: "把首页从模板换成自己的内容", done: true },
+  { text: "喵喵喵～", done: true },
+  { text: "把这个站填满", done: false },
 ];
 
 const stack = [
-  "TypeScript", "React", "Bun", "Tailwind", "Vite", "Python", "Go（很久没写）",
-  "Postgres", "Redis", "Docker", "Linux", "Neovim", "fish", "Nginx", "正则（靠搜索）",
-  "Git", "SQLite", "curl（贴进终端就算调试过）",
+  "React（其实根本没用过，全是 AI Slop）",
+  "Rust（姑且算会了）",
+  "Go（slop, slop, slop!!!）",
+  "C",
+  "C++（其实也没学过）",
+  "JavaScript（最早学习的前端语言）",
+  "TypeScript（只会一点点🤏）",
+  "Linux",
+  "PHP（🤷‍♀️）",
+  "Pwn & Reverse"
 ];
 
 const bookmarks = [
   { group: "常看的", items: [
     { label: "MDN", href: "https://developer.mozilla.org" },
-    { label: "Bun 文档", href: "https://bun.com/docs" },
     { label: "GitHub", href: "https://github.com" },
-    { label: "Hacker News", href: "https://news.ycombinator.com" },
+    { label: "Hacker News（有教育意义）", href: "https://news.ycombinator.com" },
+    { label: "Telegram", href: "#" },
   ]},
   { group: "偶尔翻的", items: [
-    { label: "Tailwind 文档", href: "https://tailwindcss.com/docs" },
-    { label: "can i use", href: "https://caniuse.com" },
-    { label: "某个博客", href: "#" },
-    { label: "收藏了但没看过", href: "#" },
+    { label: "CTF Wiki", href: "https://ctf-wiki.org" },
   ]},
 ];
 
 const links = [
   { label: "GitHub", href: "https://github.com/zhangnjsd", note: "@zhangnjsd" },
   { label: "Email", href: "mailto:shizukuaqua@outlook.com", note: "shizukuaqua@outlook.com" },
+  { label: "Blog", href: "https://plana.pw", note: "@shizukuaqua" },
+  { label: "Bilibili", href: "#", note: "@shizukuaqua" },
   { label: "RSS", href: "#", note: "还没有" },
 ];
 
@@ -162,7 +129,7 @@ export function App() {
       {/* ── 头部 ─────────────────────────────────────────── */}
       <header className="relative mb-14">
         <span className="absolute -top-6 right-2 rotate-6 rounded-md border border-dashed border-[#fbf0df]/40 px-2 py-1 font-mono text-[11px] text-[#fbf0df]/60 sm:right-10">
-          施工中 · 内容随手写的
+          施工中
         </span>
 
         <h1 className="text-5xl font-bold leading-none tracking-tight sm:text-6xl">
@@ -170,17 +137,17 @@ export function App() {
         </h1>
 
         <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#fbf0df]/70">
-          写代码，偶尔写点别的。这里扔一些项目、随笔和没做完的东西。
+          写点测试的东西。这里扔一些项目、随笔和杂七杂八的东西。
           <span className="text-[#fbf0df]/35"> 不保证顺序，也不保证写完。</span>
         </p>
 
         <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-xs text-[#fbf0df]/45">
-          <span>📍 某地</span>
+          <span>📍 PRC</span>
           <span className="text-[#fbf0df]/20">/</span>
-          <span>状态：{new Date().getFullYear()} 年还在折腾 Bun</span>
+          <span>状态：{new Date().getFullYear()} 年还在原地踏步，什么都想学但是什么都学不会。</span>
           <span className="text-[#fbf0df]/20">/</span>
           <span className="-rotate-2 rounded bg-[#fbf0df]/10 px-1.5 py-0.5">
-            最近在补 TypeScript 类型
+            最近在想啥做啥
           </span>
         </div>
       </header>
@@ -194,7 +161,7 @@ export function App() {
               在做
             </h3>
             <p className="text-[13.5px] leading-relaxed text-[#fbf0df]/70">
-              把这个站填满。然后大概会去补那个笔记工具的第一行代码。
+              写点脚本，写点后端，写点前端，然后只有枯燥的生活。
             </p>
           </div>
           <div className="rounded-xl border border-[#fbf0df]/15 bg-[#1a1a1a]/60 p-4 sm:-rotate-[0.6deg]">
@@ -202,7 +169,7 @@ export function App() {
               在读
             </h3>
             <p className="text-[13.5px] leading-relaxed text-[#fbf0df]/70">
-              一本讲分布式系统的书，进度卡在第三章已经两个月。
+              不读！
             </p>
           </div>
           <div className="rounded-xl border border-[#fbf0df]/15 bg-[#1a1a1a]/60 p-4">
@@ -210,7 +177,7 @@ export function App() {
               在听
             </h3>
             <p className="text-[13.5px] leading-relaxed text-[#fbf0df]/70">
-              同一张专辑循环了三个月。这不算懒，这叫稳定。
+              ？
             </p>
           </div>
         </div>
@@ -223,12 +190,11 @@ export function App() {
             About
           </h2>
           <p className="text-[15px] leading-[1.8] text-[#fbf0df]/75">
-            前端为主，顺手写点后端和脚本。喜欢能一次跑通的东西，讨厌配置。
-            目前在做的事情列在下面，但它们大多会变成「正在进行」状态然后一直停在那。
+            不想自我介绍。
           </p>
           <p className="mt-3 text-[13.5px] leading-relaxed text-[#fbf0df]/50">
-            写代码之外的时间大概花在：看别人的代码、后悔自己写的代码、以及给编辑器换主题。
-            这个站是我唯一坚持下来的长期项目 —— 因为它需要维护的东西足够少。
+            写代码之外的时间大概花在：折腾 Linux，没有一点功名心。
+            这个站是有事也要写来耍的东西。
           </p>
           <p className="mt-3 text-[13px] leading-relaxed text-[#fbf0df]/45">
             这里本该有一段更认真的自我介绍，等我想到怎么写再补。
@@ -239,7 +205,7 @@ export function App() {
           <div>uptime: 若干年</div>
           <div>coffee: 依赖</div>
           <div>sleep: 待定</div>
-          <div>人话: 会一点</div>
+          <div>人话: 暂时不想说</div>
         </div>
       </section>
 
@@ -461,7 +427,7 @@ export function App() {
           <li>· 部署：推 main 触发 GitHub Actions，构建完直接发布到 Pages</li>
           <li>· 后端：没有。所有内容写在前端代码里，改一个字要重新构建一次</li>
           <li>· 统计：无追踪、无 cookie、无弹窗</li>
-          <li>· 维护成本：故意压到最低，不然我会放弃</li>
+          <li>· 维护成本：故意压到最低，不然我就不想写了</li>
         </ul>
       </section>
 
@@ -487,7 +453,7 @@ export function App() {
           ))}
         </ul>
         <p className="mt-4 text-[12px] text-[#fbf0df]/35">
-          有事直接发邮件，不用寒暄，说清楚要做什么就行。
+          有事直接发邮件，是个人就能发，回不回看心情。
         </p>
       </section>
 
