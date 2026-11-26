@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Controls } from "./Controls";
 import "./index.css";
 
 /**
@@ -16,7 +17,7 @@ type Project = {
 
 const projects: Project[] = [
   {
-    name: "zhangnjsd.github.io",
+    name: "gh.plana.pw",
     desc: "就是这个站。Bun 打包、React 渲染，推一手 main 就自动部署，本地连构建脚本都不用跑。",
     state: "活着",
     meta: "Bun · React · Tailwind",
@@ -433,6 +434,16 @@ export function App() {
             </div>
           ))}
         </div>
+      </section>
+
+      {/* ── 控件试验田 ───────────────────────────────────── */}
+      <section className="mb-16">
+        <SectionTitle hint="每个都能点，但都没什么用">控件试验田</SectionTitle>
+        <p className="mb-4 max-w-xl text-[13px] leading-relaxed text-[#fbf0df]/45">
+          从这里开始往下的东西基本没什么用，属于「想到了就塞一个进来」。
+          开关会改配置、滑块会改圆角、进度条会自己跑。
+        </p>
+        <Controls />
       </section>
 
       {/* ── 空白占位 ─────────────────────────────────────── */}
